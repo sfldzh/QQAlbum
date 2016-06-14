@@ -25,6 +25,7 @@
 
 - (void)addViews{
     [self addSubview:self.imageView];
+    [self addSubview:self.flagImage];
     [self addSubview:self.selectButton];
 }
 
@@ -36,6 +37,15 @@
         _imageView.clipsToBounds = YES;
     }
     return _imageView;
+}
+
+- (UIImageView *)flagImage{
+    if (!_flagImage) {
+        _flagImage = [[UIImageView alloc] initWithFrame:CGRectZero];
+        _flagImage.contentMode = UIViewContentModeScaleAspectFit;
+        _flagImage.clipsToBounds = YES;
+    }
+    return _flagImage;
 }
 
 - (UIButton *)selectButton{
@@ -100,12 +110,12 @@
             }
         }
     }
-    
 }
 
 -(void)layoutSubviews{
     [super layoutSubviews];
     self.imageView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
+    self.flagImage.frame = CGRectMake(5, self.bounds.size.height-20, 20, 15);
 }
 
 

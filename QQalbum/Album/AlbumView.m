@@ -10,6 +10,7 @@
 #import <Photos/Photos.h>
 #import "ImageViewFlowLayout.h"
 #import "ImageCollectionViewCell.h"
+#import "PHAsset+Type.h"
 
 #define ISIOS8      ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 @interface AlbumView()<UICollectionViewDelegate,UICollectionViewDataSource,ImageCollectionViewCellDelegate>
@@ -159,6 +160,14 @@
     PHAsset *asset = [self assetAtIndexPath:indexPath];
     cell.indexPath = indexPath;
     cell.delegate = self;
+    UIImage *typeImage = [asset badgeImage];
+    if (typeImage) {
+        cell.flagImage.hidden = NO;
+        cell.flagImage.image = typeImage;
+    }else{
+        cell.flagImage.hidden = YES;
+    }
+    
     cell.isSelected = [self.selectedDictionary objectForKey:@(indexPath.row)]?[[self.selectedDictionary objectForKey:@(indexPath.row)] boolValue]:NO;
     typeof(self) __weak weakSelf = self;
     [cell setSelectedBlock:^(NSIndexPath *cellIndexPath, BOOL isSelected) {

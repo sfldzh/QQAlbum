@@ -27,6 +27,7 @@
 @property (nonatomic, strong) UIImageView   *imageView;
 @property (nonatomic, strong) UIButton      *selectButton;
 @property (nonatomic, strong) UIImage       *contentImage;
+@property (nonatomic, strong) UIImageView   *flagImage;
 @property (nonatomic, assign) CGFloat       buttonPosition;
 @property (nonatomic, assign) BOOL          isFinish;
 @property (nonatomic, assign) BOOL          isSelected;

@@ -13,6 +13,16 @@
 		D51031251D0FE0A100830121 /* CheckmarkUnselected.png in Resources */ = {isa = PBXBuildFile; fileRef = D51031221D0FE0A100830121 /* CheckmarkUnselected.png */; };
 		D51031261D0FE0A100830121 /* CheckmarkUnselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D51031231D0FE0A100830121 /* CheckmarkUnselected@2x.png */; };
 		D51031271D0FE0A100830121 /* CheckmarkUnselected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D51031241D0FE0A100830121 /* CheckmarkUnselected@3x.png */; };
+		D510312A1D0FF46D00830121 /* PHAsset+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = D51031291D0FF46D00830121 /* PHAsset+Type.m */; };
+		D51031341D0FF5B800830121 /* BadgeSlomoSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = D510312B1D0FF5B800830121 /* BadgeSlomoSmall.png */; };
+		D51031351D0FF5B800830121 /* BadgeSlomoSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D510312C1D0FF5B800830121 /* BadgeSlomoSmall@2x.png */; };
+		D51031361D0FF5B800830121 /* BadgeSlomoSmall@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D510312D1D0FF5B800830121 /* BadgeSlomoSmall@3x.png */; };
+		D51031371D0FF5B800830121 /* BadgeTimelapseSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = D510312E1D0FF5B800830121 /* BadgeTimelapseSmall.png */; };
+		D51031381D0FF5B800830121 /* BadgeTimelapseSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D510312F1D0FF5B800830121 /* BadgeTimelapseSmall@2x.png */; };
+		D51031391D0FF5B800830121 /* BadgeTimelapseSmall@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D51031301D0FF5B800830121 /* BadgeTimelapseSmall@3x.png */; };
+		D510313A1D0FF5B800830121 /* BadgeVideoSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = D51031311D0FF5B800830121 /* BadgeVideoSmall.png */; };
+		D510313B1D0FF5B800830121 /* BadgeVideoSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D51031321D0FF5B800830121 /* BadgeVideoSmall@2x.png */; };
+		D510313C1D0FF5B800830121 /* BadgeVideoSmall@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D51031331D0FF5B800830121 /* BadgeVideoSmall@3x.png */; };
 		D5D268871D0D5417009F07A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D268861D0D5417009F07A0 /* main.m */; };
 		D5D2688A1D0D5417009F07A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D268891D0D5417009F07A0 /* AppDelegate.m */; };
 		D5D2688D1D0D5417009F07A0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D2688C1D0D5417009F07A0 /* ViewController.m */; };
@@ -51,6 +61,17 @@
 		D51031221D0FE0A100830121 /* CheckmarkUnselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckmarkUnselected.png; sourceTree = "<group>"; };
 		D51031231D0FE0A100830121 /* CheckmarkUnselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckmarkUnselected@2x.png"; sourceTree = "<group>"; };
 		D51031241D0FE0A100830121 /* CheckmarkUnselected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckmarkUnselected@3x.png"; sourceTree = "<group>"; };
+		D51031281D0FF46D00830121 /* PHAsset+Type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PHAsset+Type.h"; sourceTree = "<group>"; };
+		D51031291D0FF46D00830121 /* PHAsset+Type.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PHAsset+Type.m"; sourceTree = "<group>"; };
+		D510312B1D0FF5B800830121 /* BadgeSlomoSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BadgeSlomoSmall.png; sourceTree = "<group>"; };
+		D510312C1D0FF5B800830121 /* BadgeSlomoSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BadgeSlomoSmall@2x.png"; sourceTree = "<group>"; };
+		D510312D1D0FF5B800830121 /* BadgeSlomoSmall@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BadgeSlomoSmall@3x.png"; sourceTree = "<group>"; };
+		D510312E1D0FF5B800830121 /* BadgeTimelapseSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BadgeTimelapseSmall.png; sourceTree = "<group>"; };
+		D510312F1D0FF5B800830121 /* BadgeTimelapseSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BadgeTimelapseSmall@2x.png"; sourceTree = "<group>"; };
+		D51031301D0FF5B800830121 /* BadgeTimelapseSmall@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BadgeTimelapseSmall@3x.png"; sourceTree = "<group>"; };
+		D51031311D0FF5B800830121 /* BadgeVideoSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BadgeVideoSmall.png; sourceTree = "<group>"; };
+		D51031321D0FF5B800830121 /* BadgeVideoSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BadgeVideoSmall@2x.png"; sourceTree = "<group>"; };
+		D51031331D0FF5B800830121 /* BadgeVideoSmall@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BadgeVideoSmall@3x.png"; sourceTree = "<group>"; };
 		D5D268821D0D5417009F07A0 /* QQalbum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QQalbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5D268861D0D5417009F07A0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D5D268881D0D5417009F07A0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -111,6 +132,15 @@
 				D510311D1D0FE06500830121 /* Checkmark.png */,
 				D510311C1D0FE06500830121 /* Checkmark@2x.png */,
 				D510311E1D0FE06500830121 /* Checkmark@3x.png */,
+				D510312B1D0FF5B800830121 /* BadgeSlomoSmall.png */,
+				D510312C1D0FF5B800830121 /* BadgeSlomoSmall@2x.png */,
+				D510312D1D0FF5B800830121 /* BadgeSlomoSmall@3x.png */,
+				D510312E1D0FF5B800830121 /* BadgeTimelapseSmall.png */,
+				D510312F1D0FF5B800830121 /* BadgeTimelapseSmall@2x.png */,
+				D51031301D0FF5B800830121 /* BadgeTimelapseSmall@3x.png */,
+				D51031311D0FF5B800830121 /* BadgeVideoSmall.png */,
+				D51031321D0FF5B800830121 /* BadgeVideoSmall@2x.png */,
+				D51031331D0FF5B800830121 /* BadgeVideoSmall@3x.png */,
 			);
 			path = AlbumFile;
 			sourceTree = "<group>";
@@ -185,6 +215,8 @@
 				D510310F1D0FD16100830121 /* AlbumFile */,
 				D5D268B91D0D5468009F07A0 /* AlbumView.h */,
 				D5D268BA1D0D5468009F07A0 /* AlbumView.m */,
+				D51031281D0FF46D00830121 /* PHAsset+Type.h */,
+				D51031291D0FF46D00830121 /* PHAsset+Type.m */,
 				D5E8EA831D0E58A2003D4FB7 /* ImageViewFlowLayout.h */,
 				D5E8EA841D0E58A2003D4FB7 /* ImageViewFlowLayout.m */,
 				D5D268BE1D0D6312009F07A0 /* ImageCollectionViewCell.h */,
@@ -297,14 +329,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5D268951D0D5418009F07A0 /* LaunchScreen.storyboard in Resources */,
+				D51031391D0FF5B800830121 /* BadgeTimelapseSmall@3x.png in Resources */,
 				D51031201D0FE06500830121 /* Checkmark.png in Resources */,
 				D51031251D0FE0A100830121 /* CheckmarkUnselected.png in Resources */,
+				D51031381D0FF5B800830121 /* BadgeTimelapseSmall@2x.png in Resources */,
 				D510311F1D0FE06500830121 /* Checkmark@2x.png in Resources */,
 				D51031271D0FE0A100830121 /* CheckmarkUnselected@3x.png in Resources */,
+				D510313C1D0FF5B800830121 /* BadgeVideoSmall@3x.png in Resources */,
 				D51031261D0FE0A100830121 /* CheckmarkUnselected@2x.png in Resources */,
+				D51031361D0FF5B800830121 /* BadgeSlomoSmall@3x.png in Resources */,
+				D510313A1D0FF5B800830121 /* BadgeVideoSmall.png in Resources */,
+				D51031341D0FF5B800830121 /* BadgeSlomoSmall.png in Resources */,
 				D5D268921D0D5418009F07A0 /* Assets.xcassets in Resources */,
+				D510313B1D0FF5B800830121 /* BadgeVideoSmall@2x.png in Resources */,
 				D51031211D0FE06500830121 /* Checkmark@3x.png in Resources */,
+				D51031371D0FF5B800830121 /* BadgeTimelapseSmall.png in Resources */,
 				D5D268901D0D5417009F07A0 /* Main.storyboard in Resources */,
+				D51031351D0FF5B800830121 /* BadgeSlomoSmall@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +373,7 @@
 				D5E8EA851D0E58A2003D4FB7 /* ImageViewFlowLayout.m in Sources */,
 				D5D2688D1D0D5417009F07A0 /* ViewController.m in Sources */,
 				D5D2688A1D0D5417009F07A0 /* AppDelegate.m in Sources */,
+				D510312A1D0FF46D00830121 /* PHAsset+Type.m in Sources */,
 				D5D268C01D0D6312009F07A0 /* ImageCollectionViewCell.m in Sources */,
 				D5D268BB1D0D5468009F07A0 /* AlbumView.m in Sources */,
 				D5D268871D0D5417009F07A0 /* main.m in Sources */,
