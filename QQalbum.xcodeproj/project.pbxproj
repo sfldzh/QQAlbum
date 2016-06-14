@@ -1,0 +1,584 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D510311F1D0FE06500830121 /* Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D510311C1D0FE06500830121 /* Checkmark@2x.png */; };
+		D51031201D0FE06500830121 /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = D510311D1D0FE06500830121 /* Checkmark.png */; };
+		D51031211D0FE06500830121 /* Checkmark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D510311E1D0FE06500830121 /* Checkmark@3x.png */; };
+		D51031251D0FE0A100830121 /* CheckmarkUnselected.png in Resources */ = {isa = PBXBuildFile; fileRef = D51031221D0FE0A100830121 /* CheckmarkUnselected.png */; };
+		D51031261D0FE0A100830121 /* CheckmarkUnselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D51031231D0FE0A100830121 /* CheckmarkUnselected@2x.png */; };
+		D51031271D0FE0A100830121 /* CheckmarkUnselected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D51031241D0FE0A100830121 /* CheckmarkUnselected@3x.png */; };
+		D5D268871D0D5417009F07A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D268861D0D5417009F07A0 /* main.m */; };
+		D5D2688A1D0D5417009F07A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D268891D0D5417009F07A0 /* AppDelegate.m */; };
+		D5D2688D1D0D5417009F07A0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D2688C1D0D5417009F07A0 /* ViewController.m */; };
+		D5D268901D0D5417009F07A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5D2688E1D0D5417009F07A0 /* Main.storyboard */; };
+		D5D268921D0D5418009F07A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5D268911D0D5418009F07A0 /* Assets.xcassets */; };
+		D5D268951D0D5418009F07A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5D268931D0D5418009F07A0 /* LaunchScreen.storyboard */; };
+		D5D268A01D0D5418009F07A0 /* QQalbumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D2689F1D0D5418009F07A0 /* QQalbumTests.m */; };
+		D5D268AB1D0D5418009F07A0 /* QQalbumUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D268AA1D0D5418009F07A0 /* QQalbumUITests.m */; };
+		D5D268BB1D0D5468009F07A0 /* AlbumView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D268BA1D0D5468009F07A0 /* AlbumView.m */; };
+		D5D268BD1D0D55DF009F07A0 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D268BC1D0D55DF009F07A0 /* Photos.framework */; };
+		D5D268C01D0D6312009F07A0 /* ImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D268BF1D0D6312009F07A0 /* ImageCollectionViewCell.m */; };
+		D5E8EA851D0E58A2003D4FB7 /* ImageViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E8EA841D0E58A2003D4FB7 /* ImageViewFlowLayout.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D5D2689C1D0D5418009F07A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5D2687A1D0D5417009F07A0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5D268811D0D5417009F07A0;
+			remoteInfo = QQalbum;
+		};
+		D5D268A71D0D5418009F07A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5D2687A1D0D5417009F07A0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5D268811D0D5417009F07A0;
+			remoteInfo = QQalbum;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D510311C1D0FE06500830121 /* Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkmark@2x.png"; sourceTree = "<group>"; };
+		D510311D1D0FE06500830121 /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Checkmark.png; sourceTree = "<group>"; };
+		D510311E1D0FE06500830121 /* Checkmark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkmark@3x.png"; sourceTree = "<group>"; };
+		D51031221D0FE0A100830121 /* CheckmarkUnselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckmarkUnselected.png; sourceTree = "<group>"; };
+		D51031231D0FE0A100830121 /* CheckmarkUnselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckmarkUnselected@2x.png"; sourceTree = "<group>"; };
+		D51031241D0FE0A100830121 /* CheckmarkUnselected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckmarkUnselected@3x.png"; sourceTree = "<group>"; };
+		D5D268821D0D5417009F07A0 /* QQalbum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QQalbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5D268861D0D5417009F07A0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D5D268881D0D5417009F07A0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D5D268891D0D5417009F07A0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D5D2688B1D0D5417009F07A0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D5D2688C1D0D5417009F07A0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D5D2688F1D0D5417009F07A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D5D268911D0D5418009F07A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D5D268941D0D5418009F07A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D5D268961D0D5418009F07A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5D2689B1D0D5418009F07A0 /* QQalbumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QQalbumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5D2689F1D0D5418009F07A0 /* QQalbumTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QQalbumTests.m; sourceTree = "<group>"; };
+		D5D268A11D0D5418009F07A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5D268A61D0D5418009F07A0 /* QQalbumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QQalbumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5D268AA1D0D5418009F07A0 /* QQalbumUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QQalbumUITests.m; sourceTree = "<group>"; };
+		D5D268AC1D0D5418009F07A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5D268B91D0D5468009F07A0 /* AlbumView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumView.h; sourceTree = "<group>"; };
+		D5D268BA1D0D5468009F07A0 /* AlbumView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumView.m; sourceTree = "<group>"; };
+		D5D268BC1D0D55DF009F07A0 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		D5D268BE1D0D6312009F07A0 /* ImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCollectionViewCell.h; sourceTree = "<group>"; };
+		D5D268BF1D0D6312009F07A0 /* ImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCollectionViewCell.m; sourceTree = "<group>"; };
+		D5E8EA831D0E58A2003D4FB7 /* ImageViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewFlowLayout.h; sourceTree = "<group>"; };
+		D5E8EA841D0E58A2003D4FB7 /* ImageViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewFlowLayout.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D5D2687F1D0D5417009F07A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5D268BD1D0D55DF009F07A0 /* Photos.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5D268981D0D5418009F07A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5D268A31D0D5418009F07A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D510310F1D0FD16100830121 /* AlbumFile */ = {
+			isa = PBXGroup;
+			children = (
+				D51031221D0FE0A100830121 /* CheckmarkUnselected.png */,
+				D51031231D0FE0A100830121 /* CheckmarkUnselected@2x.png */,
+				D51031241D0FE0A100830121 /* CheckmarkUnselected@3x.png */,
+				D510311D1D0FE06500830121 /* Checkmark.png */,
+				D510311C1D0FE06500830121 /* Checkmark@2x.png */,
+				D510311E1D0FE06500830121 /* Checkmark@3x.png */,
+			);
+			path = AlbumFile;
+			sourceTree = "<group>";
+		};
+		D5D268791D0D5417009F07A0 = {
+			isa = PBXGroup;
+			children = (
+				D5D268BC1D0D55DF009F07A0 /* Photos.framework */,
+				D5D268841D0D5417009F07A0 /* QQalbum */,
+				D5D2689E1D0D5418009F07A0 /* QQalbumTests */,
+				D5D268A91D0D5418009F07A0 /* QQalbumUITests */,
+				D5D268831D0D5417009F07A0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D5D268831D0D5417009F07A0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D5D268821D0D5417009F07A0 /* QQalbum.app */,
+				D5D2689B1D0D5418009F07A0 /* QQalbumTests.xctest */,
+				D5D268A61D0D5418009F07A0 /* QQalbumUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D5D268841D0D5417009F07A0 /* QQalbum */ = {
+			isa = PBXGroup;
+			children = (
+				D5D268B81D0D5453009F07A0 /* Album */,
+				D5D268881D0D5417009F07A0 /* AppDelegate.h */,
+				D5D268891D0D5417009F07A0 /* AppDelegate.m */,
+				D5D2688B1D0D5417009F07A0 /* ViewController.h */,
+				D5D2688C1D0D5417009F07A0 /* ViewController.m */,
+				D5D2688E1D0D5417009F07A0 /* Main.storyboard */,
+				D5D268911D0D5418009F07A0 /* Assets.xcassets */,
+				D5D268931D0D5418009F07A0 /* LaunchScreen.storyboard */,
+				D5D268961D0D5418009F07A0 /* Info.plist */,
+				D5D268851D0D5417009F07A0 /* Supporting Files */,
+			);
+			path = QQalbum;
+			sourceTree = "<group>";
+		};
+		D5D268851D0D5417009F07A0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D5D268861D0D5417009F07A0 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D5D2689E1D0D5418009F07A0 /* QQalbumTests */ = {
+			isa = PBXGroup;
+			children = (
+				D5D2689F1D0D5418009F07A0 /* QQalbumTests.m */,
+				D5D268A11D0D5418009F07A0 /* Info.plist */,
+			);
+			path = QQalbumTests;
+			sourceTree = "<group>";
+		};
+		D5D268A91D0D5418009F07A0 /* QQalbumUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D5D268AA1D0D5418009F07A0 /* QQalbumUITests.m */,
+				D5D268AC1D0D5418009F07A0 /* Info.plist */,
+			);
+			path = QQalbumUITests;
+			sourceTree = "<group>";
+		};
+		D5D268B81D0D5453009F07A0 /* Album */ = {
+			isa = PBXGroup;
+			children = (
+				D510310F1D0FD16100830121 /* AlbumFile */,
+				D5D268B91D0D5468009F07A0 /* AlbumView.h */,
+				D5D268BA1D0D5468009F07A0 /* AlbumView.m */,
+				D5E8EA831D0E58A2003D4FB7 /* ImageViewFlowLayout.h */,
+				D5E8EA841D0E58A2003D4FB7 /* ImageViewFlowLayout.m */,
+				D5D268BE1D0D6312009F07A0 /* ImageCollectionViewCell.h */,
+				D5D268BF1D0D6312009F07A0 /* ImageCollectionViewCell.m */,
+			);
+			path = Album;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D5D268811D0D5417009F07A0 /* QQalbum */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5D268AF1D0D5418009F07A0 /* Build configuration list for PBXNativeTarget "QQalbum" */;
+			buildPhases = (
+				D5D2687E1D0D5417009F07A0 /* Sources */,
+				D5D2687F1D0D5417009F07A0 /* Frameworks */,
+				D5D268801D0D5417009F07A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QQalbum;
+			productName = QQalbum;
+			productReference = D5D268821D0D5417009F07A0 /* QQalbum.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D5D2689A1D0D5418009F07A0 /* QQalbumTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5D268B21D0D5418009F07A0 /* Build configuration list for PBXNativeTarget "QQalbumTests" */;
+			buildPhases = (
+				D5D268971D0D5418009F07A0 /* Sources */,
+				D5D268981D0D5418009F07A0 /* Frameworks */,
+				D5D268991D0D5418009F07A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5D2689D1D0D5418009F07A0 /* PBXTargetDependency */,
+			);
+			name = QQalbumTests;
+			productName = QQalbumTests;
+			productReference = D5D2689B1D0D5418009F07A0 /* QQalbumTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D5D268A51D0D5418009F07A0 /* QQalbumUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5D268B51D0D5418009F07A0 /* Build configuration list for PBXNativeTarget "QQalbumUITests" */;
+			buildPhases = (
+				D5D268A21D0D5418009F07A0 /* Sources */,
+				D5D268A31D0D5418009F07A0 /* Frameworks */,
+				D5D268A41D0D5418009F07A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5D268A81D0D5418009F07A0 /* PBXTargetDependency */,
+			);
+			name = QQalbumUITests;
+			productName = QQalbumUITests;
+			productReference = D5D268A61D0D5418009F07A0 /* QQalbumUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D5D2687A1D0D5417009F07A0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = Dimoo;
+				TargetAttributes = {
+					D5D268811D0D5417009F07A0 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					D5D2689A1D0D5418009F07A0 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = D5D268811D0D5417009F07A0;
+					};
+					D5D268A51D0D5418009F07A0 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = D5D268811D0D5417009F07A0;
+					};
+				};
+			};
+			buildConfigurationList = D5D2687D1D0D5417009F07A0 /* Build configuration list for PBXProject "QQalbum" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D5D268791D0D5417009F07A0;
+			productRefGroup = D5D268831D0D5417009F07A0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D5D268811D0D5417009F07A0 /* QQalbum */,
+				D5D2689A1D0D5418009F07A0 /* QQalbumTests */,
+				D5D268A51D0D5418009F07A0 /* QQalbumUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D5D268801D0D5417009F07A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5D268951D0D5418009F07A0 /* LaunchScreen.storyboard in Resources */,
+				D51031201D0FE06500830121 /* Checkmark.png in Resources */,
+				D51031251D0FE0A100830121 /* CheckmarkUnselected.png in Resources */,
+				D510311F1D0FE06500830121 /* Checkmark@2x.png in Resources */,
+				D51031271D0FE0A100830121 /* CheckmarkUnselected@3x.png in Resources */,
+				D51031261D0FE0A100830121 /* CheckmarkUnselected@2x.png in Resources */,
+				D5D268921D0D5418009F07A0 /* Assets.xcassets in Resources */,
+				D51031211D0FE06500830121 /* Checkmark@3x.png in Resources */,
+				D5D268901D0D5417009F07A0 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5D268991D0D5418009F07A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5D268A41D0D5418009F07A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D5D2687E1D0D5417009F07A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5E8EA851D0E58A2003D4FB7 /* ImageViewFlowLayout.m in Sources */,
+				D5D2688D1D0D5417009F07A0 /* ViewController.m in Sources */,
+				D5D2688A1D0D5417009F07A0 /* AppDelegate.m in Sources */,
+				D5D268C01D0D6312009F07A0 /* ImageCollectionViewCell.m in Sources */,
+				D5D268BB1D0D5468009F07A0 /* AlbumView.m in Sources */,
+				D5D268871D0D5417009F07A0 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5D268971D0D5418009F07A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5D268A01D0D5418009F07A0 /* QQalbumTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5D268A21D0D5418009F07A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5D268AB1D0D5418009F07A0 /* QQalbumUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D5D2689D1D0D5418009F07A0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5D268811D0D5417009F07A0 /* QQalbum */;
+			targetProxy = D5D2689C1D0D5418009F07A0 /* PBXContainerItemProxy */;
+		};
+		D5D268A81D0D5418009F07A0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5D268811D0D5417009F07A0 /* QQalbum */;
+			targetProxy = D5D268A71D0D5418009F07A0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D5D2688E1D0D5417009F07A0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5D2688F1D0D5417009F07A0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D5D268931D0D5418009F07A0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5D268941D0D5418009F07A0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D5D268AD1D0D5418009F07A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D5D268AE1D0D5418009F07A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D5D268B01D0D5418009F07A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = QQalbum/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aixin.LoveCard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D5D268B11D0D5418009F07A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = QQalbum/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aixin.LoveCard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D5D268B31D0D5418009F07A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = QQalbumTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aixin.LoveCard.QQalbumTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QQalbum.app/QQalbum";
+			};
+			name = Debug;
+		};
+		D5D268B41D0D5418009F07A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = QQalbumTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aixin.LoveCard.QQalbumTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QQalbum.app/QQalbum";
+			};
+			name = Release;
+		};
+		D5D268B61D0D5418009F07A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = QQalbumUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aixin.LoveCard.QQalbumUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = QQalbum;
+			};
+			name = Debug;
+		};
+		D5D268B71D0D5418009F07A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = QQalbumUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aixin.LoveCard.QQalbumUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = QQalbum;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D5D2687D1D0D5417009F07A0 /* Build configuration list for PBXProject "QQalbum" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5D268AD1D0D5418009F07A0 /* Debug */,
+				D5D268AE1D0D5418009F07A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5D268AF1D0D5418009F07A0 /* Build configuration list for PBXNativeTarget "QQalbum" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5D268B01D0D5418009F07A0 /* Debug */,
+				D5D268B11D0D5418009F07A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5D268B21D0D5418009F07A0 /* Build configuration list for PBXNativeTarget "QQalbumTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5D268B31D0D5418009F07A0 /* Debug */,
+				D5D268B41D0D5418009F07A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5D268B51D0D5418009F07A0 /* Build configuration list for PBXNativeTarget "QQalbumUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5D268B61D0D5418009F07A0 /* Debug */,
+				D5D268B71D0D5418009F07A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D5D2687A1D0D5417009F07A0 /* Project object */;
+}
