@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @protocol ImageCollectionViewCellDelegate<NSObject>
 /**
- *	@author 施峰磊, 16-06-14 15:06:56
+ *	@author sender, 16-06-14 15:06:56
  *
  *	TODO:是否可以选择
  *

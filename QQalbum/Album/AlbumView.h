@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @protocol AlbumViewDelegate <NSObject>
 /**
- *	@author 施峰磊, 16-06-14 14:06:11
+ *	@author sender, 16-06-14 14:06:11
  *
  *	TODO:选择的图片
  *
@@ -31,7 +31,7 @@
 @property (nonatomic, assign) NSUInteger maxItem;
 
 /**
- *	@author 施峰磊, 16-06-14 14:06:53
+ *	@author sender, 16-06-14 14:06:53
  *
  *	TODO:发送多选图片
  *
