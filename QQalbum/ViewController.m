@@ -10,7 +10,7 @@
 #import "AlbumView.h"
 
 @interface ViewController ()<AlbumViewDelegate>
-
+@property (nonatomic, strong)AlbumView *albumView;
 @end
 
 @implementation ViewController
@@ -19,15 +19,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    AlbumView *albumView = [[AlbumView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 200)];
-    albumView.delegate = self;
-    albumView.maxItem = 3;
-    [self.view addSubview:albumView];
+    self.albumView = [[AlbumView alloc] initWithFrame:CGRectMake(0, 150, self.view.bounds.size.width, 200)];
+    self.albumView.delegate = self;
+    self.albumView.maxItem = 3;
+    [self.view addSubview:self.albumView];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)sendImages:(id)sender {
+    [self.albumView sendSelectImage];
 }
 
 /**
@@ -40,7 +43,11 @@
  *	@since 1.0
  */
 - (void)selectedImages:(NSArray *)images{
+    NSLog(@"%@",images);
+}
 
+- (void)didSelectCount:(NSUInteger)count{
+    NSLog(@"已经选择%lu张",(unsigned long)count);
 }
 
 @end

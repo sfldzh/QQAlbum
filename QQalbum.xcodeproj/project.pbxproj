@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13B865401D116E6900E81529 /* AlbumHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B8653F1D116E6900E81529 /* AlbumHelper.m */; };
 		D510311F1D0FE06500830121 /* Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D510311C1D0FE06500830121 /* Checkmark@2x.png */; };
 		D51031201D0FE06500830121 /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = D510311D1D0FE06500830121 /* Checkmark.png */; };
 		D51031211D0FE06500830121 /* Checkmark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D510311E1D0FE06500830121 /* Checkmark@3x.png */; };
@@ -23,6 +24,7 @@
 		D510313A1D0FF5B800830121 /* BadgeVideoSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = D51031311D0FF5B800830121 /* BadgeVideoSmall.png */; };
 		D510313B1D0FF5B800830121 /* BadgeVideoSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D51031321D0FF5B800830121 /* BadgeVideoSmall@2x.png */; };
 		D510313C1D0FF5B800830121 /* BadgeVideoSmall@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D51031331D0FF5B800830121 /* BadgeVideoSmall@3x.png */; };
+		D524D66D1D123A2E00123D4D /* ALAsset+Type.m in Sources */ = {isa = PBXBuildFile; fileRef = D524D66C1D123A2E00123D4D /* ALAsset+Type.m */; };
 		D5D268871D0D5417009F07A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D268861D0D5417009F07A0 /* main.m */; };
 		D5D2688A1D0D5417009F07A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D268891D0D5417009F07A0 /* AppDelegate.m */; };
 		D5D2688D1D0D5417009F07A0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D2688C1D0D5417009F07A0 /* ViewController.m */; };
@@ -32,7 +34,6 @@
 		D5D268A01D0D5418009F07A0 /* QQalbumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D2689F1D0D5418009F07A0 /* QQalbumTests.m */; };
 		D5D268AB1D0D5418009F07A0 /* QQalbumUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D268AA1D0D5418009F07A0 /* QQalbumUITests.m */; };
 		D5D268BB1D0D5468009F07A0 /* AlbumView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D268BA1D0D5468009F07A0 /* AlbumView.m */; };
-		D5D268BD1D0D55DF009F07A0 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D268BC1D0D55DF009F07A0 /* Photos.framework */; };
 		D5D268C01D0D6312009F07A0 /* ImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D268BF1D0D6312009F07A0 /* ImageCollectionViewCell.m */; };
 		D5E8EA851D0E58A2003D4FB7 /* ImageViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E8EA841D0E58A2003D4FB7 /* ImageViewFlowLayout.m */; };
 /* End PBXBuildFile section */
@@ -55,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		13B8653E1D116E6900E81529 /* AlbumHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumHelper.h; sourceTree = "<group>"; };
+		13B8653F1D116E6900E81529 /* AlbumHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumHelper.m; sourceTree = "<group>"; };
 		D510311C1D0FE06500830121 /* Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkmark@2x.png"; sourceTree = "<group>"; };
 		D510311D1D0FE06500830121 /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Checkmark.png; sourceTree = "<group>"; };
 		D510311E1D0FE06500830121 /* Checkmark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkmark@3x.png"; sourceTree = "<group>"; };
@@ -72,6 +75,8 @@
 		D51031311D0FF5B800830121 /* BadgeVideoSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BadgeVideoSmall.png; sourceTree = "<group>"; };
 		D51031321D0FF5B800830121 /* BadgeVideoSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BadgeVideoSmall@2x.png"; sourceTree = "<group>"; };
 		D51031331D0FF5B800830121 /* BadgeVideoSmall@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BadgeVideoSmall@3x.png"; sourceTree = "<group>"; };
+		D524D66B1D123A2E00123D4D /* ALAsset+Type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALAsset+Type.h"; sourceTree = "<group>"; };
+		D524D66C1D123A2E00123D4D /* ALAsset+Type.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALAsset+Type.m"; sourceTree = "<group>"; };
 		D5D268821D0D5417009F07A0 /* QQalbum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QQalbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5D268861D0D5417009F07A0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D5D268881D0D5417009F07A0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -90,7 +95,6 @@
 		D5D268AC1D0D5418009F07A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5D268B91D0D5468009F07A0 /* AlbumView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumView.h; sourceTree = "<group>"; };
 		D5D268BA1D0D5468009F07A0 /* AlbumView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumView.m; sourceTree = "<group>"; };
-		D5D268BC1D0D55DF009F07A0 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		D5D268BE1D0D6312009F07A0 /* ImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCollectionViewCell.h; sourceTree = "<group>"; };
 		D5D268BF1D0D6312009F07A0 /* ImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCollectionViewCell.m; sourceTree = "<group>"; };
 		D5E8EA831D0E58A2003D4FB7 /* ImageViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewFlowLayout.h; sourceTree = "<group>"; };
@@ -102,7 +106,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5D268BD1D0D55DF009F07A0 /* Photos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,7 +151,6 @@
 		D5D268791D0D5417009F07A0 = {
 			isa = PBXGroup;
 			children = (
-				D5D268BC1D0D55DF009F07A0 /* Photos.framework */,
 				D5D268841D0D5417009F07A0 /* QQalbum */,
 				D5D2689E1D0D5418009F07A0 /* QQalbumTests */,
 				D5D268A91D0D5418009F07A0 /* QQalbumUITests */,
@@ -215,8 +217,12 @@
 				D510310F1D0FD16100830121 /* AlbumFile */,
 				D5D268B91D0D5468009F07A0 /* AlbumView.h */,
 				D5D268BA1D0D5468009F07A0 /* AlbumView.m */,
+				13B8653E1D116E6900E81529 /* AlbumHelper.h */,
+				13B8653F1D116E6900E81529 /* AlbumHelper.m */,
 				D51031281D0FF46D00830121 /* PHAsset+Type.h */,
 				D51031291D0FF46D00830121 /* PHAsset+Type.m */,
+				D524D66B1D123A2E00123D4D /* ALAsset+Type.h */,
+				D524D66C1D123A2E00123D4D /* ALAsset+Type.m */,
 				D5E8EA831D0E58A2003D4FB7 /* ImageViewFlowLayout.h */,
 				D5E8EA841D0E58A2003D4FB7 /* ImageViewFlowLayout.m */,
 				D5D268BE1D0D6312009F07A0 /* ImageCollectionViewCell.h */,
@@ -371,8 +377,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5E8EA851D0E58A2003D4FB7 /* ImageViewFlowLayout.m in Sources */,
+				D524D66D1D123A2E00123D4D /* ALAsset+Type.m in Sources */,
 				D5D2688D1D0D5417009F07A0 /* ViewController.m in Sources */,
 				D5D2688A1D0D5417009F07A0 /* AppDelegate.m in Sources */,
+				13B865401D116E6900E81529 /* AlbumHelper.m in Sources */,
 				D510312A1D0FF46D00830121 /* PHAsset+Type.m in Sources */,
 				D5D268C01D0D6312009F07A0 /* ImageCollectionViewCell.m in Sources */,
 				D5D268BB1D0D5468009F07A0 /* AlbumView.m in Sources */,
@@ -518,9 +526,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = QQalbum/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aixin.LoveCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "cf9a5b43-5b38-4214-a394-88e9123e6973";
 			};
 			name = Debug;
 		};
@@ -529,9 +539,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = QQalbum/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aixin.LoveCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "cf9a5b43-5b38-4214-a394-88e9123e6973";
 			};
 			name = Release;
 		};

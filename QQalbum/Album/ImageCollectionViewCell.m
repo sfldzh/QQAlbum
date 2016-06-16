@@ -9,6 +9,7 @@
 #import "ImageCollectionViewCell.h"
 #define ButtonSize 20
 @interface ImageCollectionViewCell()
+
 @end
 
 @implementation ImageCollectionViewCell
@@ -18,6 +19,8 @@
     if (self) {
         self.layer.shouldRasterize = YES;
         self.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        self.backgroundColor = [UIColor lightGrayColor];
+        self.contentView.backgroundColor = [UIColor clearColor];
         [self addViews];
     }
     return self;
@@ -25,6 +28,7 @@
 
 - (void)addViews{
     [self addSubview:self.imageView];
+    [self.imageView addSubview:self.promptLabel];
     [self addSubview:self.flagImage];
     [self addSubview:self.selectButton];
 }
@@ -48,10 +52,23 @@
     return _flagImage;
 }
 
+- (UILabel *)promptLabel{
+    if (!_promptLabel) {
+        _promptLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _promptLabel.backgroundColor = [UIColor grayColor];
+        _promptLabel.textColor = [UIColor whiteColor];
+        _promptLabel.textAlignment = NSTextAlignmentCenter;
+        _promptLabel.font = [UIFont boldSystemFontOfSize:13.0f];
+        _promptLabel.layer.masksToBounds = YES;
+        _promptLabel.text = @"松手发送";
+        _promptLabel.hidden = YES;
+    }
+    return _promptLabel;
+}
+
 - (UIButton *)selectButton{
     if (!_selectButton) {
         _selectButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        _selectButton.backgroundColor = [UIColor redColor];
         [_selectButton setImage:[UIImage imageNamed:@"Checkmark"] forState:UIControlStateSelected];
         [_selectButton setImage:[UIImage imageNamed:@"CheckmarkUnselected"] forState:UIControlStateNormal];
         [_selectButton addTarget:self action:@selector(selectButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -96,7 +113,7 @@
     if (button.selected) {
         button.selected = !button.selected;
         if (self.selectedBlock) {
-            self.selectedBlock(self.indexPath,button.selected);
+            self.selectedBlock(self.indexPath,button.selected,self);
         }
     }else{
         BOOL canSelect;
@@ -106,16 +123,23 @@
         if (canSelect) {
             button.selected = !button.selected;
             if (self.selectedBlock) {
-                self.selectedBlock(self.indexPath,button.selected);
+                self.selectedBlock(self.indexPath,button.selected,self);
             }
         }
+    }
+    if (self.delegate&&[self.delegate respondsToSelector:@selector(didClickSelectButton)]) {
+        [self.delegate didClickSelectButton];
     }
 }
 
 -(void)layoutSubviews{
     [super layoutSubviews];
-    self.imageView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
-    self.flagImage.frame = CGRectMake(5, self.bounds.size.height-20, 20, 15);
+    if (self.imageView.superview == self) {
+        self.imageView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
+        self.flagImage.frame = CGRectMake(5, self.bounds.size.height-20, 20, 15);
+        self.promptLabel.frame = CGRectMake(self.imageView.frame.size.width/2-33, 5, 66, 20);
+        self.promptLabel.layer.cornerRadius = self.promptLabel.frame.size.height/2;
+    }
 }
 
 

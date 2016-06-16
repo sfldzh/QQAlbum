@@ -18,6 +18,8 @@
  *	@since 1.0
  */
 - (BOOL)canSelect;
+
+- (void)didClickSelectButton;
 @end
 
 @interface ImageCollectionViewCell : UICollectionViewCell
@@ -28,9 +30,11 @@
 @property (nonatomic, strong) UIButton      *selectButton;
 @property (nonatomic, strong) UIImage       *contentImage;
 @property (nonatomic, strong) UIImageView   *flagImage;
+@property (nonatomic, strong) UILabel       *promptLabel;
 @property (nonatomic, assign) CGFloat       buttonPosition;
 @property (nonatomic, assign) BOOL          isFinish;
 @property (nonatomic, assign) BOOL          isSelected;
+@property (nonatomic, assign) BOOL          isPhoto;
 @property (nonatomic, strong) NSIndexPath   *indexPath;
-@property (nonatomic, strong) void(^selectedBlock)(NSIndexPath *indexPath,BOOL isSelected);
+@property (nonatomic, strong) void(^selectedBlock)(NSIndexPath *indexPath,BOOL isSelected,ImageCollectionViewCell*cell);
 @end

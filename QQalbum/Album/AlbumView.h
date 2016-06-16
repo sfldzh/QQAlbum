@@ -19,6 +19,8 @@
  */
 - (void)selectedImages:(NSArray *)images;
 
+- (void)didSelectCount:(NSUInteger)count;
+
 @end
 
 

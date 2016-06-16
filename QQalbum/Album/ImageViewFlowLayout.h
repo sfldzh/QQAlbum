@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol ImageViewFlowLayoutDelegate<NSObject>
+
+- (void)cellWillMove:(NSIndexPath *)indexPath;
+
+- (void)cellDidChange:(CGFloat)offsetY;
+
+- (void)canSendImage:(BOOL)can;
+
+- (void)cancelMoveCell:(UIPanGestureRecognizer *)gesture;
+
+- (void)sendImage:(NSIndexPath *)indexPath panGestureRecognizer:(UIPanGestureRecognizer *)gesture;
+@end
 
 @interface ImageViewFlowLayout : UICollectionViewFlowLayout
+@property(nonatomic,assign)id<ImageViewFlowLayoutDelegate>sendDelegate;
 
 @end

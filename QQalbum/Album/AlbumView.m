@@ -11,11 +11,13 @@
 #import "ImageViewFlowLayout.h"
 #import "ImageCollectionViewCell.h"
 #import "PHAsset+Type.h"
+#import "ALAsset+Type.h"
+#import "AlbumHelper.h"
 
-#define ISIOS8      ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-@interface AlbumView()<UICollectionViewDelegate,UICollectionViewDataSource,ImageCollectionViewCellDelegate>
+@interface AlbumView()<UICollectionViewDelegate,UICollectionViewDataSource,ImageCollectionViewCellDelegate,ImageViewFlowLayoutDelegate,PHPhotoLibraryChangeObserver>
 @property (nonatomic, strong) PHAssetCollection         *assetCollection;
 @property (nonatomic, strong) PHFetchResult             *fetchResult;
+@property (nonatomic, copy) NSMutableArray            *fetchAlResult;
 @property (nonatomic, strong) UICollectionView          *collectionView;
 
 @property (nonatomic, assign) NSInteger                 lastIndex;
@@ -25,6 +27,8 @@
 @property (nonatomic, assign) NSInteger                 defullIndex;
 @property (nonatomic, assign) CGFloat                   defullPosition;
 @property (nonatomic, strong) NSMutableDictionary       *selectedDictionary;
+@property (nonatomic, strong) UIImageView               *moveImageView;
+@property (nonatomic, strong) ImageCollectionViewCell   *moveCell;
 @end
 
 @implementation AlbumView
@@ -34,37 +38,29 @@
     if (self) {
         [self addViews];
         [self initData];
-        [self initAlbumData];
+        [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
+        [self AlbumData];
     }
     return self;
 }
 
-- (void)initAlbumData{
-    PHAssetCollectionType type = PHAssetCollectionTypeSmartAlbum;
-    PHAssetCollectionSubtype subtype = PHAssetCollectionSubtypeSmartAlbumUserLibrary;
-    
-    PHFetchOptions *fetchOptions = [PHFetchOptions new];
-    fetchOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"estimatedAssetCount" ascending:NO]];
-    
-    PHFetchResult *fetchResult = [PHAssetCollection fetchAssetCollectionsWithType:type subtype:subtype options:fetchOptions];
-    
-    for (PHAssetCollection *assetCollection in fetchResult){
-        self.assetCollection = assetCollection;
-    }
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        PHFetchResult *fetchResult =
-        [PHAsset fetchAssetsInAssetCollection:self.assetCollection
-                                      options:nil];
-        // 回到主线程显示图片
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.fetchResult = fetchResult;
-            [self.collectionView reloadData];
-        });
-    });
+- (void)AlbumData{
+    typeof(self) __weak weakSelf = self;
+    [AlbumHelper fetchAlbumsContentBlock:^(id content, BOOL success) {
+        if (success) {
+            if (ISIOS8) {
+                weakSelf.fetchResult = content;
+            }else{
+                weakSelf.fetchAlResult = content;
+//                [weakSelf.fetchAlResult addObjectsFromArray:((NSArray*)content)];
+            }
+            [weakSelf.collectionView reloadData];
+        }
+    }];
 }
 
 - (void)initData{
+    self.fetchAlResult = [NSMutableArray arrayWithCapacity:0];
     self.selectedDictionary = [NSMutableDictionary dictionaryWithCapacity:0];
 }
 
@@ -75,6 +71,7 @@
 - (UICollectionView *)collectionView{
     if (!_collectionView) {
         ImageViewFlowLayout *layout = [[ImageViewFlowLayout alloc] init];
+        layout.sendDelegate = self;
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         layout.minimumInteritemSpacing = 3;
         layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
@@ -92,25 +89,6 @@
     return (self.fetchResult.count > 0) ? self.fetchResult[indexPath.item] : nil;
 }
 
-- (void)requestImageForAsset:(PHAsset *)asset size:(CGSize)size resizeMode:(PHImageRequestOptionsResizeMode)resizeMode completion:(void (^)(UIImage *))completion{
-    size.width *= 2;
-    size.height *= 2;
-    PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
-    /**
-     resizeMode：对请求的图像怎样缩放。有三种选择：None，默认加载方式；Fast，尽快地提供接近或稍微大于要求的尺寸；Exact，精准提供要求的尺寸。
-     deliveryMode：图像质量。有三种值：Opportunistic，在速度与质量中均衡；HighQualityFormat，不管花费多长时间，提供高质量图像；FastFormat，以最快速度提供好的质量。
-     这个属性只有在 synchronous 为 true 时有效。
-     */
-    option.resizeMode = resizeMode;//控制照片尺寸
-    //option.deliveryMode = PHImageRequestOptionsDeliveryModeOpportunistic;//控制照片质量
-    //option.synchronous = YES;
-    option.networkAccessAllowed = YES;
-    //param：targetSize 即你想要的图片尺寸，若想要原尺寸则可输入PHImageManagerMaximumSize
-    [[PHCachingImageManager defaultManager] requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeAspectFit options:option resultHandler:^(UIImage * _Nullable image, NSDictionary * _Nullable info) {
-        completion(image);
-    }];
-}
-
 
 /**
  *	@author 施峰磊, 16-06-14 14:06:53
@@ -122,10 +100,18 @@
 - (void)sendSelectImage{
     if (self.selectedDictionary.count != 0) {
         NSMutableArray *selectArrary = [NSMutableArray arrayWithCapacity:0];
+        [self resetCellState];
         for (NSNumber*key in self.selectedDictionary.allKeys) {
             if ([[self.selectedDictionary objectForKey:key] boolValue]) {
-                PHAsset *asset = self.fetchResult[[key integerValue]];
-                [selectArrary addObject:asset];
+                if (ISIOS8) {
+                    PHAsset *asset = self.fetchResult[[key integerValue]];
+                    [selectArrary addObject:asset];
+                }else{
+                    ALAsset *asset = self.fetchAlResult[[key integerValue]];
+//                    UIImage *image = self.fetchAlResult[[key integerValue]];
+                    [selectArrary addObject:asset];
+                }
+                [self.selectedDictionary setObject:@(NO) forKey:key];
             }
         }
         if (selectArrary.count>0) {
@@ -136,14 +122,95 @@
     }
 }
 
-#pragma mark - 获取图片及图片尺寸的相关方法
-- (CGSize)getSizeWithAsset:(PHAsset *)asset{
-    CGFloat width  = (CGFloat)asset.pixelWidth;
-    CGFloat height = (CGFloat)asset.pixelHeight;
-    CGFloat scale = width/height;
-    CGFloat maxWidth = 160;
-    CGFloat sizeWidth = self.collectionView.frame.size.height*scale>maxWidth?maxWidth:self.collectionView.frame.size.height*scale;
-    return CGSizeMake(sizeWidth, self.collectionView.frame.size.height);
+/**
+ *	@author 施峰磊, 16-06-15 23:28:53
+ *
+ *	TODO: cell状态复位
+ *
+ *	@since 1.0
+ */
+- (void)resetCellState{
+    for (NSIndexPath *indexPath in [self.collectionView indexPathsForVisibleItems]) {
+        NSNumber *content = [self.selectedDictionary objectForKey:@(indexPath.row)];
+        if (content && [content boolValue]) {
+            ImageCollectionViewCell *showCell = (ImageCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+            showCell.selectButton.selected =NO;
+        }
+    }
+}
+
+- (void)photoLibraryDidChange:(PHChange *)changeInstance {
+    /*
+     Change notifications may be made on a background queue. Re-dispatch to the
+     main queue before acting on the change as we'll be updating the UI.
+     */
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // Loop through the section fetch results, replacing any fetch results that have been updated.
+        [self AlbumData];
+    });
+}
+
+#pragma mark - ImageViewFlowLayoutDelegate
+- (void)cellWillMove:(NSIndexPath *)indexPath{
+    self.moveCell = (ImageCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+    self.moveCell.selectButton.hidden = YES;
+    if (!self.moveCell.isPhoto) {
+        self.moveCell.flagImage.hidden = YES;
+    }
+    self.moveImageView = self.moveCell.imageView;
+    [self.moveImageView removeFromSuperview];
+    CGRect cellRect = [self.collectionView convertRect:self.moveCell.frame toView:self.superview];
+    self.moveImageView.frame = cellRect;
+    
+    [[[UIApplication sharedApplication] keyWindow] addSubview:self.moveImageView];
+}
+
+- (void)cellDidChange:(CGFloat)offsetY{
+    self.moveImageView.frame = CGRectMake(self.moveImageView.frame.origin.x, self.frame.origin.y+offsetY, self.moveImageView.frame.size.width, self.moveImageView.frame.size.height);
+}
+- (void)canSendImage:(BOOL)can{
+    self.moveCell.promptLabel.hidden = !can;
+}
+
+- (void)cancelMoveCell:(UIPanGestureRecognizer *)gesture{
+    gesture.enabled = NO;
+    [UIView animateWithDuration:0.15 animations:^{
+        self.moveImageView.frame = CGRectMake(self.moveImageView.frame.origin.x, self.frame.origin.y, self.moveImageView.frame.size.width, self.moveImageView.frame.size.height);
+    } completion:^(BOOL finished) {
+        [self.moveImageView removeFromSuperview];
+        self.moveImageView.frame = CGRectMake(0, 0, self.moveImageView.frame.size.width, self.moveImageView.frame.size.height);
+        [self.moveCell insertSubview:self.moveImageView atIndex:0];
+        self.moveCell.selectButton.hidden = NO;
+        if (!self.moveCell.isPhoto) {
+            self.moveCell.flagImage.hidden = NO;
+        }
+        gesture.enabled = YES;
+    }];
+}
+
+- (void)sendImage:(NSIndexPath *)indexPath panGestureRecognizer:(UIPanGestureRecognizer *)gesture{
+    if (self.delegate&&[self.delegate respondsToSelector:@selector(selectedImages:)]) {
+        if (ISIOS8) {
+            [self.delegate selectedImages:@[self.fetchResult[indexPath.row]]];
+        }else{
+            [self.delegate selectedImages:@[self.fetchAlResult[indexPath.row]]];
+        }
+    }
+    self.moveImageView.alpha = 0.0;
+    self.moveCell.promptLabel.hidden = YES;
+    [self.moveImageView removeFromSuperview];
+    self.moveImageView.frame = CGRectMake(0, 0, self.moveImageView.frame.size.width, self.moveImageView.frame.size.height);
+    [self.moveCell insertSubview:self.moveImageView atIndex:0];
+    gesture.enabled = NO;
+    [UIView animateWithDuration:0.15 animations:^{
+        self.moveImageView.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        self.moveCell.selectButton.hidden = NO;
+        if (!self.moveCell.isPhoto) {
+            self.moveCell.flagImage.hidden = NO;
+        }
+        gesture.enabled = YES;
+    }];
 }
 
 #pragma mark - UICollectionDataSource
@@ -152,15 +219,30 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.fetchResult.count;
+    NSInteger count;
+    if (ISIOS8) {
+        count = self.fetchResult.count;
+    }else{
+        count = self.fetchAlResult.count;
+    }
+    return count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     __block ImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageCollectionViewCell" forIndexPath:indexPath];
-    PHAsset *asset = [self assetAtIndexPath:indexPath];
-    cell.indexPath = indexPath;
-    cell.delegate = self;
-    UIImage *typeImage = [asset badgeImage];
+    UIImage *typeImage;
+    if (ISIOS8) {
+        PHAsset *asset = [self assetAtIndexPath:indexPath];
+        typeImage = [asset badgeImage];
+        [AlbumHelper requestImageForAsset:asset size:[AlbumHelper getSizeWithAsset:asset maxHeight:self.frame.size.height maxWidth:self.frame.size.width - 20] resizeMode:PHImageRequestOptionsResizeModeNone completion:^(UIImage *image) {
+            cell.contentImage = image;
+        }];
+    }else{
+        ALAsset *asset = self.fetchAlResult[indexPath.row];
+        typeImage = [asset badgeImage];
+        cell.contentImage = [UIImage imageWithCGImage:asset.aspectRatioThumbnail];
+    }
+    
     if (typeImage) {
         cell.flagImage.hidden = NO;
         cell.flagImage.image = typeImage;
@@ -168,10 +250,20 @@
         cell.flagImage.hidden = YES;
     }
     
+    
+    cell.indexPath = indexPath;
+    cell.delegate = self;
+    cell.isPhoto = cell.flagImage.hidden;
+    
     cell.isSelected = [self.selectedDictionary objectForKey:@(indexPath.row)]?[[self.selectedDictionary objectForKey:@(indexPath.row)] boolValue]:NO;
     typeof(self) __weak weakSelf = self;
-    [cell setSelectedBlock:^(NSIndexPath *cellIndexPath, BOOL isSelected) {
+    [cell setSelectedBlock:^(NSIndexPath *cellIndexPath, BOOL isSelected, ImageCollectionViewCell *selectCell) {
         [weakSelf.selectedDictionary setObject:@(isSelected) forKey:@(cellIndexPath.row)];
+        if (isSelected) {
+            CGRect scrollRect = selectCell.frame;
+            scrollRect.origin.x += 30;
+            [weakSelf.collectionView scrollRectToVisible:scrollRect animated:YES];
+        }
     }];
     if (self.lastIndexPath.row<=indexPath.row) {
         if (indexPath.row<self.defullIndex) {
@@ -186,16 +278,20 @@
         cell.isFinish = YES;
     }
     self.lastIndexPath = indexPath;
-    
-    [self requestImageForAsset:asset size:[self getSizeWithAsset:asset] resizeMode:PHImageRequestOptionsResizeModeNone completion:^(UIImage *image) {
-        cell.contentImage = image;
-    }];
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    PHAsset *asset = [self assetAtIndexPath:indexPath];
-    CGSize tempSize = [self getSizeWithAsset:asset];
+    CGSize tempSize;
+    CGFloat maxWidth = self.frame.size.width - 20;
+    if (ISIOS8) {
+        PHAsset *asset = [self assetAtIndexPath:indexPath];
+        tempSize = [AlbumHelper getSizeWithAsset:asset maxHeight:self.frame.size.height maxWidth:maxWidth];
+    }else{
+        ALAsset *asset = self.fetchAlResult[indexPath.row];
+        tempSize = [AlbumHelper getSizeWithAsset:[UIImage imageWithCGImage:asset.aspectRatioThumbnail] maxHeight:self.frame.size.height maxWidth:maxWidth];
+    }
+    
     self.defullPosition += tempSize.width;
     if (self.defullPosition <= self.frame.size.width) {
         self.defullIndex++;
@@ -236,15 +332,32 @@
         NSMutableArray *selectArrary = [NSMutableArray arrayWithCapacity:0];
         for (NSNumber*key in self.selectedDictionary.allKeys) {
             if ([[self.selectedDictionary objectForKey:key] boolValue]) {
-                PHAsset *asset = self.fetchResult[[key integerValue]];
-                [selectArrary addObject:asset];
+                if (ISIOS8) {
+                    PHAsset *asset = self.fetchResult[[key integerValue]];
+                    [selectArrary addObject:asset];
+                }else{
+                    [selectArrary addObject:self.fetchAlResult[[key integerValue]]];
+                }
             }
         }
         if (selectArrary.count>=self.maxItem) {
             return NO;
         }
     }
+    
     return YES;
+}
+
+- (void)didClickSelectButton{
+    NSUInteger count = 0;
+    for (NSNumber*key in self.selectedDictionary.allKeys) {
+        if ([[self.selectedDictionary objectForKey:key] boolValue]) {
+            count++;
+        }
+    }
+    if (self.delegate&&[self.delegate respondsToSelector:@selector(didSelectCount:)]) {
+        [self.delegate didSelectCount:count];
+    }
 }
 
 
