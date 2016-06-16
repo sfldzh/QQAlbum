@@ -21,7 +21,6 @@
         }
     } else {
         ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
-        
         if (author == ALAuthorizationStatusRestricted || author == ALAuthorizationStatusNotDetermined) {
             //无权限
             _isAuth = NO;
