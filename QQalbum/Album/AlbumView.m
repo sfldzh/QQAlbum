@@ -76,10 +76,11 @@
         layout.minimumInteritemSpacing = 3;
         layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
         
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
         _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.showsHorizontalScrollIndicator = NO;
         [_collectionView registerClass:[ImageCollectionViewCell class] forCellWithReuseIdentifier:@"ImageCollectionViewCell"];
     }
     return _collectionView;
@@ -148,6 +149,11 @@
         // Loop through the section fetch results, replacing any fetch results that have been updated.
         [self AlbumData];
     });
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    self.collectionView.frame = self.bounds;
 }
 
 #pragma mark - ImageViewFlowLayoutDelegate
@@ -234,7 +240,7 @@
     if (ISIOS8) {
         PHAsset *asset = [self assetAtIndexPath:indexPath];
         typeImage = [asset badgeImage];
-        [AlbumHelper requestImageForAsset:asset size:[AlbumHelper getSizeWithAsset:asset maxHeight:self.frame.size.height maxWidth:self.frame.size.width - 20] resizeMode:PHImageRequestOptionsResizeModeNone completion:^(UIImage *image) {
+        [AlbumHelper requestImageForAsset:asset size:[AlbumHelper getSizeWithAsset:asset maxHeight:self.frame.size.height maxWidth:self.frame.size.width - 20] resizeMode:PHImageRequestOptionsResizeModeFast completion:^(UIImage *image) {
             cell.contentImage = image;
         }];
     }else{

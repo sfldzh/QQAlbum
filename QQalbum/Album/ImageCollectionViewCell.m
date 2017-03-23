@@ -82,16 +82,16 @@
 
 - (void)setButtonPosition:(CGFloat)buttonPosition{
 //    NSLog(@"buttonPosition:%f\n",buttonPosition);
-    CGFloat startX = 10;
+    CGFloat startX = 0;
     CGFloat endX = self.bounds.size.width -(ButtonSize+10);
     
     CGFloat piont = 0;
-    if (buttonPosition-ButtonSize <= startX) {
+    if (buttonPosition-ButtonSize-10 <= startX) {
         piont = startX;
-    }else if(buttonPosition-ButtonSize >= endX){
+    }else if(buttonPosition-ButtonSize-10 >= endX){
         piont = endX;
     }else{
-        piont = buttonPosition-ButtonSize;
+        piont = buttonPosition-ButtonSize -10;
     }
     self.selectButton.frame = CGRectMake(piont, 5, ButtonSize, ButtonSize);
 }

@@ -10,7 +10,12 @@
 
 @implementation AlbumHelper
 
-//是否可以访问照片
+
+/**
+ TODO:是否可以访问照片
+
+ @return 是否允许
+ */
 + (BOOL)canAccessAlbums {
     BOOL _isAuth = YES;
     if (ISIOS8) {

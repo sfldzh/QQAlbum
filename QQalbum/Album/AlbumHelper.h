@@ -14,6 +14,11 @@
 //#define ISIOS8 NO
 @interface AlbumHelper : NSObject
 
+/**
+ TODO:是否可以访问照片
+ 
+ @return 是否允许
+ */
 + (BOOL)canAccessAlbums;
 
 + (void)fetchAlbumsContentBlock:(void(^)(id content, BOOL success))contentBlock;
