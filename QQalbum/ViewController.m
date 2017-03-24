@@ -19,10 +19,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    self.albumView = [[AlbumView alloc] initWithFrame:CGRectMake(0, 150, self.view.bounds.size.width, 200)];
+    self.albumView = [[AlbumView alloc] initWithFrame:CGRectZero];
     self.albumView.delegate = self;
-    self.albumView.maxItem = 3;
+    self.albumView.maxItem = 5;
     [self.view addSubview:self.albumView];
+}
+
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    self.albumView.frame = CGRectMake(0, 150, self.view.bounds.size.width, 200);
 }
 
 - (void)didReceiveMemoryWarning {

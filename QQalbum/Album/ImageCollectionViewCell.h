@@ -33,8 +33,8 @@
 @property (nonatomic, strong) UILabel       *promptLabel;
 @property (nonatomic, assign) CGFloat       buttonPosition;
 @property (nonatomic, assign) BOOL          isFinish;
-@property (nonatomic, assign) BOOL          isSelected;
 @property (nonatomic, assign) BOOL          isPhoto;
 @property (nonatomic, strong) NSIndexPath   *indexPath;
-@property (nonatomic, strong) void(^selectedBlock)(NSIndexPath *indexPath,BOOL isSelected,ImageCollectionViewCell*cell);
+@property (nonatomic, assign) NSInteger     selectIndex;
+@property (nonatomic, copy) void(^selectedBlock)(NSIndexPath *indexPath,BOOL isSelected,ImageCollectionViewCell*cell);
 @end

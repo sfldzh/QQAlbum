@@ -17,18 +17,14 @@
 @interface AlbumView()<UICollectionViewDelegate,UICollectionViewDataSource,ImageCollectionViewCellDelegate,ImageViewFlowLayoutDelegate,PHPhotoLibraryChangeObserver>
 @property (nonatomic, strong) PHAssetCollection         *assetCollection;
 @property (nonatomic, strong) PHFetchResult             *fetchResult;
-@property (nonatomic, copy) NSMutableArray            *fetchAlResult;
+@property (nonatomic, copy) NSMutableArray              *fetchAlResult;
 @property (nonatomic, strong) UICollectionView          *collectionView;
 
-@property (nonatomic, assign) NSInteger                 lastIndex;
-@property (nonatomic, strong) ImageCollectionViewCell   *showCell;
-@property (nonatomic, assign) CGRect                    lastcellRect;
-@property (nonatomic, copy) NSIndexPath                 *lastIndexPath;
-@property (nonatomic, assign) NSInteger                 defullIndex;
-@property (nonatomic, assign) CGFloat                   defullPosition;
 @property (nonatomic, strong) NSMutableDictionary       *selectedDictionary;
 @property (nonatomic, strong) UIImageView               *moveImageView;
 @property (nonatomic, strong) ImageCollectionViewCell   *moveCell;
+
+@property (nonatomic, strong) NSMutableArray            *cellList;
 @end
 
 @implementation AlbumView
@@ -62,6 +58,7 @@
 - (void)initData{
     self.fetchAlResult = [NSMutableArray arrayWithCapacity:0];
     self.selectedDictionary = [NSMutableDictionary dictionaryWithCapacity:0];
+    self.cellList = [NSMutableArray arrayWithCapacity:0];
 }
 
 - (void)addViews{
@@ -100,44 +97,41 @@
  */
 - (void)sendSelectImage{
     if (self.selectedDictionary.count != 0) {
+        NSDictionary *temp = [self imageIndexSortWithSourceDic:self.selectedDictionary];
+        
         NSMutableArray *selectArrary = [NSMutableArray arrayWithCapacity:0];
-        [self resetCellState];
-        for (NSNumber*key in self.selectedDictionary.allKeys) {
-            if ([[self.selectedDictionary objectForKey:key] boolValue]) {
-                if (ISIOS8) {
-                    PHAsset *asset = self.fetchResult[[key integerValue]];
-                    [selectArrary addObject:asset];
-                }else{
-                    ALAsset *asset = self.fetchAlResult[[key integerValue]];
-//                    UIImage *image = self.fetchAlResult[[key integerValue]];
-                    [selectArrary addObject:asset];
-                }
-                [self.selectedDictionary setObject:@(NO) forKey:key];
+        for (NSInteger i = 0; i < self.selectedDictionary.count; i++) {
+            NSNumber *key = [temp objectForKey:@(i)];
+            if (ISIOS8) {
+                PHAsset *asset = self.fetchResult[[key integerValue]];
+                [selectArrary addObject:asset];
+            }else{
+                ALAsset *asset = self.fetchAlResult[[key integerValue]];
+                [selectArrary addObject:asset];
             }
         }
+        
+        [self.selectedDictionary removeAllObjects];
+        
         if (selectArrary.count>0) {
             if (self.delegate&&[self.delegate respondsToSelector:@selector(selectedImages:)]) {
                 [self.delegate selectedImages:selectArrary];
             }
         }
+        [self.collectionView reloadData];
     }
 }
 
+
 /**
- *	@author sender, 16-06-15 23:28:53
- *
- *	TODO: cell状态复位
- *
- *	@since 1.0
+ TODO:照片排序
+
+ @param sourceDic 原数据
  */
-- (void)resetCellState{
-    for (NSIndexPath *indexPath in [self.collectionView indexPathsForVisibleItems]) {
-        NSNumber *content = [self.selectedDictionary objectForKey:@(indexPath.row)];
-        if (content && [content boolValue]) {
-            ImageCollectionViewCell *showCell = (ImageCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
-            showCell.selectButton.selected =NO;
-        }
-    }
+- (NSDictionary *)imageIndexSortWithSourceDic:(NSMutableDictionary *)sourceDic{
+    NSArray *allValue = [sourceDic allValues];
+    NSArray *allKey = [sourceDic allKeys];
+    return [NSDictionary dictionaryWithObjects:allKey forKeys:allValue];
 }
 
 - (void)photoLibraryDidChange:(PHChange *)changeInstance {
@@ -219,6 +213,41 @@
     }];
 }
 
+
+/**
+ TODO:设置cell的选择序号
+ */
+- (void)setCellSelectIndex{
+    for (ImageCollectionViewCell *cell in self.cellList) {
+        NSNumber *indexNumber = [self.selectedDictionary objectForKey:@(cell.indexPath.row)];
+        cell.selectIndex = indexNumber?[indexNumber integerValue]:0;
+    }
+}
+
+
+/**
+ TODO:设置cell的位置
+
+ @param cell cell
+ */
+- (void)cellPosition:(ImageCollectionViewCell *)cell{
+    CGRect currenRect = [self.collectionView convertRect:cell.frame toView:self];
+    if (currenRect.origin.x>self.frame.size.width) {//在右边未显示
+        cell.isFinish = NO;
+    }else{
+        if (CGRectIntersectsRect(currenRect, self.frame)) {//在屏幕上
+            if ((currenRect.origin.x+currenRect.size.width)<self.frame.size.width) {
+                cell.isFinish = YES;
+            }else{//有一部分被遮掩要计算(右边)
+                cell.buttonPosition = self.frame.size.width-currenRect.origin.x ;
+            }
+        }else{//在左边未显示
+            cell.isFinish = YES;
+        }
+    }
+}
+
+
 #pragma mark - UICollectionDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
@@ -235,7 +264,7 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    __block ImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageCollectionViewCell" forIndexPath:indexPath];
+     ImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageCollectionViewCell" forIndexPath:indexPath];
     UIImage *typeImage;
     if (ISIOS8) {
         PHAsset *asset = [self assetAtIndexPath:indexPath];
@@ -260,32 +289,43 @@
     cell.indexPath = indexPath;
     cell.delegate = self;
     cell.isPhoto = cell.flagImage.hidden;
-    
-    cell.isSelected = [self.selectedDictionary objectForKey:@(indexPath.row)]?[[self.selectedDictionary objectForKey:@(indexPath.row)] boolValue]:NO;
+    NSNumber *indexNumber = [self.selectedDictionary objectForKey:@(indexPath.row)];
+    cell.selectIndex = indexNumber?[indexNumber integerValue]:0;
     typeof(self) __weak weakSelf = self;
     [cell setSelectedBlock:^(NSIndexPath *cellIndexPath, BOOL isSelected, ImageCollectionViewCell *selectCell) {
-        [weakSelf.selectedDictionary setObject:@(isSelected) forKey:@(cellIndexPath.row)];
+        NSDictionary *temp = weakSelf.selectedDictionary;
         if (isSelected) {
+            [weakSelf.selectedDictionary setObject:@(temp.count+1) forKey:@(cellIndexPath.row)];
             CGRect scrollRect = selectCell.frame;
             scrollRect.origin.x += 30;
             [weakSelf.collectionView scrollRectToVisible:scrollRect animated:YES];
-        }
-    }];
-    if (self.lastIndexPath.row<=indexPath.row) {
-        if (indexPath.row<self.defullIndex) {
-            cell.isFinish = YES;
-        }else if (indexPath.row==self.defullIndex){
-            ImageCollectionViewCell *lastcell = (ImageCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-1 inSection:0]];
-            [self showCellAnimation:cell lastPosition:CGRectGetMaxX(lastcell.frame) NowPosition:self.frame.size.width];
         }else{
-            cell.isFinish = NO;
+            NSNumber *currentNumber = [weakSelf.selectedDictionary objectForKey:@(cellIndexPath.row)];
+            for (NSNumber *key in [temp allKeys]) {
+                NSNumber *tempIndex = [temp objectForKey:key];
+                if ([currentNumber integerValue]<[tempIndex integerValue]) {
+                    [weakSelf.selectedDictionary setObject:@([tempIndex integerValue]-1) forKey:key];
+                }
+            }
+            [weakSelf.selectedDictionary removeObjectForKey:@(cellIndexPath.row)];
         }
-    }else{
-        cell.isFinish = YES;
-    }
-    self.lastIndexPath = indexPath;
+        [weakSelf setCellSelectIndex];
+    }];
+    
+    [self cellPosition:cell];
+    
     return cell;
 }
+
+#pragma mark - UICollectionViewDelegate
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
+    [self.cellList addObject:cell];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
+    [self.cellList removeObject:cell];
+}
+
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     CGSize tempSize;
@@ -297,72 +337,28 @@
         ALAsset *asset = self.fetchAlResult[indexPath.row];
         tempSize = [AlbumHelper getSizeWithAsset:[UIImage imageWithCGImage:asset.aspectRatioThumbnail] maxHeight:self.frame.size.height maxWidth:maxWidth];
     }
-    
-    self.defullPosition += tempSize.width;
-    if (self.defullPosition <= self.frame.size.width) {
-        self.defullIndex++;
-    }
     return tempSize;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    CGFloat nowPosition = scrollView.contentOffset.x+self.frame.size.width;
-    [self getMaxRowByDatas:[self.collectionView indexPathsForVisibleItems] nowPosition:nowPosition];
-}
-
-- (void)getMaxRowByDatas:(NSArray *)datas nowPosition:(CGFloat)nowPosition{
-    NSInteger maxRow = 0;
-    for (NSIndexPath *indexPath in datas) {
-        if (maxRow<indexPath.row) {
-            maxRow = indexPath.row;
-        }
+    for (ImageCollectionViewCell *cell in self.cellList) {
+        [self cellPosition:cell];
     }
-    if (self.lastIndex != maxRow) {
-        self.lastIndex = maxRow;
-        self.showCell = (ImageCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:maxRow inSection:0]];
-        ImageCollectionViewCell *lastcell = (ImageCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:self.lastIndex-1 inSection:0]];
-        self.lastcellRect = [self.collectionView convertRect:lastcell.frame toView:self.collectionView];
-    }
-    if (self.showCell) {
-        [self showCellAnimation:self.showCell lastPosition:CGRectGetMaxX(self.lastcellRect) NowPosition:nowPosition];
-    }
-}
-
-- (void)showCellAnimation:(ImageCollectionViewCell *)cell lastPosition:(CGFloat)lastPosition NowPosition:(CGFloat)nowPosition{
-    cell.buttonPosition = nowPosition - lastPosition;
 }
 
 #pragma mark - ImageCollectionViewCellDelegate
 -(BOOL)canSelect{
     if (self.selectedDictionary.count != 0) {
-        NSMutableArray *selectArrary = [NSMutableArray arrayWithCapacity:0];
-        for (NSNumber*key in self.selectedDictionary.allKeys) {
-            if ([[self.selectedDictionary objectForKey:key] boolValue]) {
-                if (ISIOS8) {
-                    PHAsset *asset = self.fetchResult[[key integerValue]];
-                    [selectArrary addObject:asset];
-                }else{
-                    [selectArrary addObject:self.fetchAlResult[[key integerValue]]];
-                }
-            }
-        }
-        if (selectArrary.count>=self.maxItem) {
+        if (self.selectedDictionary.count>=self.maxItem) {
             return NO;
         }
     }
-    
     return YES;
 }
 
 - (void)didClickSelectButton{
-    NSUInteger count = 0;
-    for (NSNumber*key in self.selectedDictionary.allKeys) {
-        if ([[self.selectedDictionary objectForKey:key] boolValue]) {
-            count++;
-        }
-    }
     if (self.delegate&&[self.delegate respondsToSelector:@selector(didSelectCount:)]) {
-        [self.delegate didSelectCount:count];
+        [self.delegate didSelectCount:self.selectedDictionary.count];
     }
 }
 

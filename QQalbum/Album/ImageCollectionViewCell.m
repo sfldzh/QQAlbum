@@ -8,7 +8,8 @@
 
 #import "ImageCollectionViewCell.h"
 #define ButtonSize 20
-@interface ImageCollectionViewCell()
+@interface ImageCollectionViewCell()<CAAnimationDelegate>
+@property (nonatomic,assign) BOOL isSelected;
 
 @end
 
@@ -69,8 +70,10 @@
 - (UIButton *)selectButton{
     if (!_selectButton) {
         _selectButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_selectButton setImage:[UIImage imageNamed:@"Checkmark"] forState:UIControlStateSelected];
-        [_selectButton setImage:[UIImage imageNamed:@"CheckmarkUnselected"] forState:UIControlStateNormal];
+        _selectButton.layer.borderColor = [UIColor whiteColor].CGColor;
+        _selectButton.layer.borderWidth = 1.5;
+        _selectButton.layer.cornerRadius = ButtonSize/2.0;
+        _selectButton.layer.masksToBounds = YES;
         [_selectButton addTarget:self action:@selector(selectButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _selectButton;
@@ -81,7 +84,6 @@
 }
 
 - (void)setButtonPosition:(CGFloat)buttonPosition{
-//    NSLog(@"buttonPosition:%f\n",buttonPosition);
     CGFloat startX = 0;
     CGFloat endX = self.bounds.size.width -(ButtonSize+10);
     
@@ -105,15 +107,20 @@
     _isFinish = isFinish;
 }
 
-- (void)setIsSelected:(BOOL)isSelected{
-    self.selectButton.selected = isSelected;
+
+
+- (void)setSelectIndex:(NSInteger)selectIndex{
+    _selectIndex = selectIndex;
+    self.isSelected = !(selectIndex==0);
+    [self.selectButton setTitle:selectIndex == 0?@"":[NSString stringWithFormat:@"%@",@(selectIndex)] forState:UIControlStateNormal];
+    _selectButton.backgroundColor = selectIndex == 0?[UIColor colorWithWhite:0.0 alpha:0.4]:[UIColor colorWithRed:102.0/255.0 green:206.0/255.0 blue:248.0/255.0 alpha:1.0];
 }
 
 - (void)selectButton:(UIButton*)button{
-    if (button.selected) {
-        button.selected = !button.selected;
+    if (self.isSelected) {
         if (self.selectedBlock) {
-            self.selectedBlock(self.indexPath,button.selected,self);
+            self.isSelected = !self.isSelected;
+            self.selectedBlock(self.indexPath,self.isSelected,self);
         }
     }else{
         BOOL canSelect;
@@ -121,15 +128,32 @@
             canSelect = [self.delegate canSelect];
         }
         if (canSelect) {
-            button.selected = !button.selected;
+            self.isSelected = !self.isSelected;
             if (self.selectedBlock) {
-                self.selectedBlock(self.indexPath,button.selected,self);
+                self.selectedBlock(self.indexPath,self.isSelected,self);
             }
         }
+        [self selectAnimationWithButton:button];
     }
     if (self.delegate&&[self.delegate respondsToSelector:@selector(didClickSelectButton)]) {
         [self.delegate didClickSelectButton];
     }
+}
+
+
+/**
+ TODO:选中动画
+
+ @param button 按钮
+ */
+- (void)selectAnimationWithButton:(UIButton *)button{
+    CAKeyframeAnimation *popAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
+    popAnimation.delegate = self;
+    popAnimation.duration = 0.6;
+    popAnimation.values = @[@(1.0),@(1.25),@(0.95),@(1.1),@(1.0)];
+    popAnimation.keyTimes = @[@(0.0),@(0.25),@(0.5),@(0.75),@(1.0)];
+    popAnimation.calculationMode = kCAAnimationLinear;
+    [button.layer addAnimation:popAnimation forKey:@"popAnimation"];
 }
 
 -(void)layoutSubviews{
@@ -142,6 +166,9 @@
     }
 }
 
-
+#pragma mark - CAAnimationDelegate
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
+    [self.selectButton.layer removeAnimationForKey:@"popAnimation"];
+}
 
 @end
