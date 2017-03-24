@@ -1,4 +1,4 @@
-# RippleButton
+# QQAlbum
 
 ###项目介绍
 * 该框架为一个类似QQ多选照片（支持视频）的框架
